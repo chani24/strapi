@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "covid_fact_sheets",
+  "info": {
+    "singularName": "covid-fact-sheet",
+    "pluralName": "covid-fact-sheets",
+    "displayName": "CovidFactSheet",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "issue_number": {
+      "type": "integer",
+      "required": true
+    },
+    "body": {
+      "type": "text"
+    },
+    "pdf": {
+      "type": "string"
+    }
+  }
+}

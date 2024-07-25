@@ -1,0 +1,80 @@
+{
+  "kind": "collectionType",
+  "collectionName": "blog_posts",
+  "info": {
+    "singularName": "blog-post",
+    "pluralName": "blog-posts",
+    "displayName": "BlogPost",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "length": {
+      "type": "integer",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "writer": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::writer.writer"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "Policy",
+        "Legal"
+      ],
+      "required": true
+    },
+    "region": {
+      "type": "enumeration",
+      "enum": [
+        "Nigeria",
+        "West-Africa",
+        "Africa",
+        "Asia",
+        "Europe",
+        "North America",
+        "America"
+      ],
+      "required": true
+    },
+    "topics_covered": {
+      "type": "enumeration",
+      "enum": [
+        "Nigerian Music Business",
+        "History of the Nigerian Music ",
+        "Monetising your Craft"
+      ],
+      "required": true
+    },
+    "full_report": {
+      "type": "string"
+    },
+    "body": {
+      "type": "blocks"
+    }
+  }
+}
