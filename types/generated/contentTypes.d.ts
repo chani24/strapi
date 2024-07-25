@@ -788,68 +788,6 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
-export interface ApiBlogPostBlogPost extends Schema.CollectionType {
-  collectionName: 'blog_posts';
-  info: {
-    singularName: 'blog-post';
-    pluralName: 'blog-posts';
-    displayName: 'BlogPost';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
-    length: Attribute.Integer & Attribute.Required;
-    image: Attribute.Media & Attribute.Required;
-    writer: Attribute.Relation<
-      'api::blog-post.blog-post',
-      'oneToOne',
-      'api::writer.writer'
-    >;
-    type: Attribute.Enumeration<['Policy', 'Legal']> & Attribute.Required;
-    region: Attribute.Enumeration<
-      [
-        'Nigeria',
-        'West-Africa',
-        'Africa',
-        'Asia',
-        'Europe',
-        'North America',
-        'America'
-      ]
-    > &
-      Attribute.Required;
-    topics_covered: Attribute.Enumeration<
-      [
-        'Nigerian Music Business',
-        'History of the Nigerian Music ',
-        'Monetising your Craft'
-      ]
-    > &
-      Attribute.Required;
-    full_report: Attribute.String;
-    body: Attribute.Blocks;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::blog-post.blog-post',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::blog-post.blog-post',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiCovidFactSheetCovidFactSheet extends Schema.CollectionType {
   collectionName: 'covid_fact_sheets';
   info: {
@@ -876,6 +814,165 @@ export interface ApiCovidFactSheetCovidFactSheet extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::covid-fact-sheet.covid-fact-sheet',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiIssueIssue extends Schema.CollectionType {
+  collectionName: 'issues';
+  info: {
+    singularName: 'issue';
+    pluralName: 'issues';
+    displayName: 'Issue';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.String & Attribute.Required;
+    length: Attribute.Integer & Attribute.Required & Attribute.DefaultTo<4>;
+    writer: Attribute.Relation<
+      'api::issue.issue',
+      'oneToOne',
+      'api::writer.writer'
+    >;
+    body: Attribute.Blocks & Attribute.Required;
+    image: Attribute.Media & Attribute.Required;
+    region: Attribute.Enumeration<
+      [
+        'Nigeria',
+        'West-Africa',
+        'Africa',
+        'Asia',
+        'Europe',
+        'North America',
+        'America'
+      ]
+    > &
+      Attribute.Required &
+      Attribute.DefaultTo<'Nigeria'>;
+    type: Attribute.Enumeration<
+      ['Insight', 'Issue-Brief', 'Report/White Paper', 'Borg Quarterly']
+    > &
+      Attribute.Required;
+    full_report_url: Attribute.String;
+    topics_covered: Attribute.JSON;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::issue.issue',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::issue.issue',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiResearchResearch extends Schema.CollectionType {
+  collectionName: 'researches';
+  info: {
+    singularName: 'research';
+    pluralName: 'researches';
+    displayName: 'Research';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.String & Attribute.Required;
+    writer: Attribute.Relation<
+      'api::research.research',
+      'oneToOne',
+      'api::writer.writer'
+    >;
+    length: Attribute.Integer & Attribute.Required & Attribute.DefaultTo<5>;
+    image: Attribute.Media & Attribute.Required;
+    full_report_url: Attribute.String;
+    type: Attribute.Enumeration<
+      [
+        'Governance and Institutions',
+        'Foreign Policy',
+        'Energy',
+        'Trade and Investment',
+        'Fiscal Policy',
+        'Tech and Innovation',
+        'Greening forward\u00A0',
+        'Banking and Financial Institutions'
+      ]
+    > &
+      Attribute.Required &
+      Attribute.DefaultTo<'Governance and Institutions'>;
+    body: Attribute.Blocks & Attribute.Required;
+    region: Attribute.Enumeration<
+      [
+        'Nigeria',
+        'West-Africa',
+        'Africa',
+        'Asia',
+        'Europe',
+        'North America',
+        'America'
+      ]
+    > &
+      Attribute.Required &
+      Attribute.DefaultTo<'Nigeria'>;
+    topics_covered: Attribute.JSON;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::research.research',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::research.research',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSubscriberSubscriber extends Schema.CollectionType {
+  collectionName: 'subscribers';
+  info: {
+    singularName: 'subscriber';
+    pluralName: 'subscribers';
+    displayName: 'Subscriber';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    email: Attribute.Email & Attribute.Required;
+    name: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::subscriber.subscriber',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::subscriber.subscriber',
       'oneToOne',
       'admin::user'
     > &
@@ -967,8 +1064,10 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
-      'api::blog-post.blog-post': ApiBlogPostBlogPost;
       'api::covid-fact-sheet.covid-fact-sheet': ApiCovidFactSheetCovidFactSheet;
+      'api::issue.issue': ApiIssueIssue;
+      'api::research.research': ApiResearchResearch;
+      'api::subscriber.subscriber': ApiSubscriberSubscriber;
       'api::team-member.team-member': ApiTeamMemberTeamMember;
       'api::writer.writer': ApiWriterWriter;
     }

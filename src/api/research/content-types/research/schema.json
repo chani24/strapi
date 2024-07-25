@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "blog_posts",
+  "collectionName": "researches",
   "info": {
-    "singularName": "blog-post",
-    "pluralName": "blog-posts",
-    "displayName": "BlogPost",
+    "singularName": "research",
+    "pluralName": "researches",
+    "displayName": "Research",
     "description": ""
   },
   "options": {
@@ -17,16 +17,22 @@
       "required": true
     },
     "description": {
-      "type": "text",
+      "type": "string",
       "required": true
+    },
+    "writer": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::writer.writer"
     },
     "length": {
       "type": "integer",
-      "required": true
+      "required": true,
+      "default": 5
     },
     "image": {
       "type": "media",
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "allowedTypes": [
         "images",
@@ -35,17 +41,26 @@
         "audios"
       ]
     },
-    "writer": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::writer.writer"
+    "full_report_url": {
+      "type": "string"
     },
     "type": {
       "type": "enumeration",
       "enum": [
-        "Policy",
-        "Legal"
+        "Governance and Institutions",
+        "Foreign Policy",
+        "Energy",
+        "Trade and Investment",
+        "Fiscal Policy",
+        "Tech and Innovation",
+        "Greening forward ",
+        "Banking and Financial Institutions"
       ],
+      "default": "Governance and Institutions",
+      "required": true
+    },
+    "body": {
+      "type": "blocks",
       "required": true
     },
     "region": {
@@ -59,22 +74,11 @@
         "North America",
         "America"
       ],
+      "default": "Nigeria",
       "required": true
     },
     "topics_covered": {
-      "type": "enumeration",
-      "enum": [
-        "Nigerian Music Business",
-        "History of the Nigerian Music ",
-        "Monetising your Craft"
-      ],
-      "required": true
-    },
-    "full_report": {
-      "type": "string"
-    },
-    "body": {
-      "type": "blocks"
+      "type": "json"
     }
   }
 }
