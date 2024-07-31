@@ -861,7 +861,10 @@ export interface ApiIssueIssue extends Schema.CollectionType {
     > &
       Attribute.Required;
     full_report_url: Attribute.String;
-    topics_covered: Attribute.JSON;
+    topics: Attribute.String;
+    article_type: Attribute.String &
+      Attribute.Required &
+      Attribute.DefaultTo<'issues'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -930,7 +933,10 @@ export interface ApiResearchResearch extends Schema.CollectionType {
     > &
       Attribute.Required &
       Attribute.DefaultTo<'Nigeria'>;
-    topics_covered: Attribute.JSON;
+    topics: Attribute.String;
+    article_type: Attribute.String &
+      Attribute.Required &
+      Attribute.DefaultTo<'research'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
