@@ -72,8 +72,13 @@
     "full_report_url": {
       "type": "string"
     },
-    "topics_covered": {
-      "type": "json"
+    "topics": {
+      "type": "string"
+    },
+    "article_type": {
+      "type": "string",
+      "default": "issues",
+      "required": true
     }
   }
 }
